@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 public class AtomicExample {
+
     private static Log log = LogFactory.getLog(AtomicExample.class);
 
     /**问题一：
