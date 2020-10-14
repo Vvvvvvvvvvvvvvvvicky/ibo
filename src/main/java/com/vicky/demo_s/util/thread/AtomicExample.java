@@ -46,15 +46,18 @@ public class AtomicExample {
         CustUser b = new CustUser("BBB");
         AtomicReference<CustUser> atomicReference = new AtomicReference<CustUser>(a);
 
+        //线程1：A->B->A'
         new Thread(() -> {
             boolean result1 = atomicReference.compareAndSet(a, b);
             System.out.println(Thread.currentThread().getName() + " 结果：" + result1 + " " + atomicReference.get());
 
+            //变量a的属性变更了，a->a'
             a.setName("CCC");
             boolean result2 = atomicReference.compareAndSet(b, a);
             System.out.println(Thread.currentThread().getName() + " 结果：" + result2 + " " + atomicReference.get());
         }, "t1").start();
 
+        //线程2:A'->A(这里改A’，还是使用的A，因为Java中内存地址一样就是同个对象，没有识别出a已经被改过一次了)
         new Thread(() -> {
             try {
                 TimeUnit.SECONDS.sleep(5);
@@ -63,6 +66,7 @@ public class AtomicExample {
             }
             System.out.println(Thread.currentThread().getName() + " 结果：" + atomicReference.compareAndSet(a, b) + " " + atomicReference.get());
         }, "t2").start();
+        //全部线程结束后，A->A
     }
 
 
