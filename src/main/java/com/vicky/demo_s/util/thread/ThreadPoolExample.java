@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolExample {
 
         private static final int CORE_POOL_SIZE = 5;
-        private static final int MAX_POOL_SIZE = 10;
-        private static final int QUEUE_CAPACITY = 100;
+        private static final int MAX_POOL_SIZE = 5;
+        private static final int QUEUE_CAPACITY = 2;
         private static final Long KEEP_ALIVE_TIME = 1L;
 
         public static void main(String[] args) {
@@ -30,7 +30,11 @@ public class ThreadPoolExample {
                     KEEP_ALIVE_TIME,
                     TimeUnit.SECONDS,
                     new ArrayBlockingQueue<>(QUEUE_CAPACITY),
-                    new ThreadPoolExecutor.CallerRunsPolicy());
+                    new ThreadPoolExecutor.CallerRunsPolicy()//直接在调用execute方法的线程中运行(run)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务
+//                    new ThreadPoolExecutor.DiscardPolicy() //不处理新任务，直接丢弃掉(队列满了，后面的任务就丢掉)
+//                    new ThreadPoolExecutor.DiscardOldestPolicy()//丢弃最早的未处理的任务请求(队列满了就把先加入的任务丢掉)
+//                    new ThreadPoolExecutor.AbortPolicy()  //队列无空闲时，会抛出java.util.concurrent.RejectedExecutionException
+            );
             for(int i=0;i<10;i++){
                 MyRunnable myRunnable = new MyRunnable(i + "");
                 executor.execute(myRunnable);
@@ -59,13 +63,13 @@ class MyRunnable implements Runnable{
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName() + " Start. Time = " + new Date());
+        System.out.println(Thread.currentThread().getName() + ":" + this.command + " Start. Time = " + new Date());
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + " End. Time = " + new Date());
+        System.out.println(Thread.currentThread().getName() + ":" + this.command + " End. Time = " + new Date());
     }
 
     @Override
