@@ -2,6 +2,7 @@ package com.vicky.demo_s;
 
 import java.util.logging.Logger;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vicky.demo_s.config.UserSetting;
 
+@MapperScan("com.vicky.demo_s.mapper")
 @SpringBootApplication 
 @Controller
 public class DemoSApplication {

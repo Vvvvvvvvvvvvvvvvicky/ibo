@@ -54,4 +54,10 @@ public class TestController {
 		Result result = new Result("200",id);
 		return result;
 	}
+
+	@RequestMapping("/test")
+	@ResponseBody
+	public String hello(){
+		return "hello world";
+	}
 }
