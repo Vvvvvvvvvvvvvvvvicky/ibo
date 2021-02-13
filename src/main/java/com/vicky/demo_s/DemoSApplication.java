@@ -27,9 +27,9 @@ public class DemoSApplication {
 	private UserSetting userSetting;
 	
 	//通过@Value进行常规属性配置
-	@RequestMapping("/hello")
+	@RequestMapping("/hello1")
     @ResponseBody
-    public String hello() {
+    public String hello1() {
         return "hello,"+defaultName+", you are "+defaultAge;
     }
 	

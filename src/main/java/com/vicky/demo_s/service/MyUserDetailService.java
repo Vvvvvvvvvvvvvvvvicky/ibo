@@ -30,7 +30,10 @@ public class MyUserDetailService implements UserDetailsService {
         QueryWrapper<Users> wrapper = new QueryWrapper();
         wrapper.eq("username",s);
         Users user = usersMapper.selectOne(wrapper);
-        List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("role");
+        if(user == null){
+            throw new UsernameNotFoundException("用户不存在");
+        }
+        List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("admin,ROLE_sale");
         return new User(user.getUsername(),new BCryptPasswordEncoder().encode(user.getPassword()),auths);
     }
 }
