@@ -1,11 +1,14 @@
 package com.vicky.demo_s.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Result {
-	public String code;
+	public ResultCode code;
 	public String msg;
-	
-	public Result(String Code,String msg){
-		this.code=code;
-		this.msg=msg;
-	}
+	public Object obj;
 }
+
+

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.websocket.server.PathParam;
 
+import com.vicky.demo_s.model.ResultCode;
 import com.vicky.demo_s.model.Users;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostFilter;
@@ -56,7 +57,7 @@ public class TestController {
 				item.replace("isShow", false);
 			}
 		}
-		Result result = new Result("200",id);
+		Result result = new Result(ResultCode.SUCCESS,null,id);
 		return result;
 	}
 
