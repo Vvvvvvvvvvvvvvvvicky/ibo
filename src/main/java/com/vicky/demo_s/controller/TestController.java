@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vicky.demo_s.model.Result;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller()
+@Controller("")
 public class TestController {
 	
 	public static List<Map<String,Object>> list;
@@ -42,7 +43,7 @@ public class TestController {
 		map.put("list", list);
 		return "index";
 	}
-	
+
 	@RequestMapping("/changeShowStatus")
 	@ResponseBody
 	public Result changeShowStatus(@PathParam("id")String id){
@@ -53,5 +54,11 @@ public class TestController {
 		}
 		Result result = new Result("200",id);
 		return result;
+	}
+	
+	@RequestMapping("/test")
+	@ResponseBody
+	public String changeShowStatus(){
+		return "hello world";
 	}
 }

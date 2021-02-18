@@ -3,6 +3,7 @@ package com.vicky.demo_s.util.thread;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
@@ -123,11 +124,19 @@ public class AtomicExample {
         log.info(atomicStampedReference.compareAndSet(a,c,0,1));
     }
 
+    public static void atomicMarkableReferenceExample(boolean[] markHolder){
+//        new AtomicMarkableReference();
+            markHolder[0] = true;
+    }
+
     public static void main(String[] args) {
 //        example();
 //        example2();
-            example3();
+//            example3();
 //        example4();
+        boolean[] array = new boolean[]{false,true};
+        atomicMarkableReferenceExample(array);
+        System.out.println(array[0]);
     }
 }
 
