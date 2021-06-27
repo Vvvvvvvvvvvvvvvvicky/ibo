@@ -17,7 +17,8 @@ public class BasicIO {
 
             for(int i=0; i<3;i++){
                 producer.send(
-                        Message message = session.createTextMessage(msg););
+                         session.createTextMessage("msg")
+                );
             }
 
         } catch (JMSException e) {

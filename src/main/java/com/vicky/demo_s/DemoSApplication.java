@@ -1,5 +1,9 @@
 package com.vicky.demo_s;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.mybatis.spring.annotation.MapperScan;
@@ -42,7 +46,7 @@ public class DemoSApplication {
 	}
 	
     public static void main(String[] args) {
-        SpringApplication.run(DemoSApplication.class, args);
+		SpringApplication.run(DemoSApplication.class, args);
     }
     
 }

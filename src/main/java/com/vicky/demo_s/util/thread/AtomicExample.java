@@ -125,7 +125,6 @@ public class AtomicExample {
     }
 
     public static void atomicMarkableReferenceExample(boolean[] markHolder){
-//        new AtomicMarkableReference();
             markHolder[0] = true;
     }
 
